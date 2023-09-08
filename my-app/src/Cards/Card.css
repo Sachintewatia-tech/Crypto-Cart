@@ -1,0 +1,11 @@
+.card{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: block;
+    border-radius: 9px;
+    padding: 9px;
+
+}
+.name img{
+    height: 150px;
+    width: 220px;
+}
