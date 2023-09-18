@@ -7,13 +7,19 @@ const Cryptos = ()=>{
     const [buyData,setBuyData] = useState([]);
     const [cart,setCart] = useState([]);
 
-    const handleBuyData = ({id,data})=>{
-        setBuyData({id,data});
+    const handleBuyData = (props,data)=>{
+        setBuyData(data);
+        setCart([...cart,props]);
     }
 
-    const cartData = data.filter((ele)=>{
-            return ele.id === buyData.id
-    });
+    console.log('data',buyData);
+    console.log('cart',cart);
+    const handleDelete = (id)=>{
+        const deleteCart = cart.filter((ele)=>{
+                return ele.id !== id
+        });
+        setCart(deleteCart);
+    }
         
     return(
         <>
@@ -30,10 +36,10 @@ const Cryptos = ()=>{
         <div>
             <h1 style={{marginTop:"7%"}}>---YOUR CART---</h1>
             {
-                cartData.length===0?<h3>Your Cart is Empty!</h3>: 
-                cartData && cartData.map((ele,i)=>{
+                cart.length===0?<h3>Your Cart is Empty!</h3>: 
+                cart && cart.map((ele,i)=>{
                     return(
-                        <Cart key={i} {...ele} data={buyData.data} />
+                        <Cart key={i} {...ele} data={buyData} handleDelete={handleDelete} />
                         )
                     })
                 }
